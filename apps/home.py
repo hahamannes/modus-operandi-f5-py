@@ -22,7 +22,7 @@ layout = html.Div([
         dbc.Row([
             dbc.Col(html.P(children='The aim of this project is to provide an analysis tool to extract the Modus Operandi of criminals. '
                                      'On the top right corner one can find the several techniques that are used in this project. '
-                                     'Feel free to play around and explore the data. Please note that SCATTERTEXT takes roughly 1 minute to load. ')
+                                     'Feel free to play around and explore the data. Please note that SCATTERTEXT takes a second to load. ')
                         , className="mb-5"),
         ]),
 

@@ -66,7 +66,7 @@ stop_words.extend(['tenlastelegging', 'hof', 'althans', 'tenlastegelegd', 'naan'
  'vrijspreken', 'daarnaast', 'bezigen', 'willen', 'gaan', 'vervolgens', 'raken', 'weten', 'proberen', 'echter', 'vraag', 'verdenken', 'vervatten', 'beslissing', 'hoger_beroep', 'verkort_vonni',
   'geacht', 'instellen', 'ander', 'zien', 'toebehoren', 'hoeveelheid', 'lijst_ii', 'bereiken'])
 
-
+terms = ['2018', '2019', '2020', '2021', 'Hard Drugs', 'Rape', 'Abuse', 'Burglary']
 # ------------------------------------------- Data
 
 # get relative data folder
@@ -76,9 +76,28 @@ DATA_PATH = PATH.joinpath("../datasets").resolve()
 
 
 layout = html.Div([
-    html.H1('Scattertext', style={"textAlign": "center"}),
+  html.Div([
+
+    html.Div([
+      html.H1('SCATTERTEXT', style={"textAlign": "center"}),
+      html.H5('Please select a year or crime type', style={"textAlign": "left"}),
+        html.Div(dcc.Dropdown(
+            id='genre-dropdown', value='2018', clearable=False,
+            options=[{'label': x, 'value': x} for x in terms],
+        ), className='six columns'),
+
+        html.H5('Please select a year or crime type', style={"textAlign": "left"}),
+
+        html.Div(dcc.Dropdown(
+            id='sales-dropdown', value='2019', clearable=False,
+            persistence=True, persistence_type='memory',
+            options=[{'label': x, 'value': x} for x in terms],
+        ), className='six columns'),
+    ], className='row'),
+
         html.Iframe(src=app.get_asset_url('result_scatter_scale.html'),
                                             style=dict(position="absolute", left="50", top="100", width="100%", height="100%"))
+])
 ])
 
 

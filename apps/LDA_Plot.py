@@ -66,6 +66,7 @@ stop_words.extend(['tenlastelegging', 'hof', 'althans', 'tenlastegelegd', 'naan'
   'geacht', 'instellen', 'ander', 'zien', 'toebehoren', 'hoeveelheid', 'lijst_ii', 'bereiken'])
 
 
+terms = ['2018', '2019', '2020', '2021']
 
 # ------------------------------------------- Data
 
@@ -78,6 +79,11 @@ DATA_PATH = PATH.joinpath("../datasets").resolve()
 
 layout = html.Div([
     html.H1('LDA Visualisation Tool', style={"textAlign": "center"}),
+    html.H5('Please select a year', style={"textAlign": "left"}),
+    html.Div(dcc.Dropdown(
+            id='genre-dropdown', value='2018', clearable=False,
+            options=[{'label': x, 'value': x} for x in terms],
+        ), className='six columns'),
         html.Iframe(src=app.get_asset_url('lda18.html'),
                                             style=dict(position="absolute", left="50", top="100", width="100%", height="100%"))
 ])

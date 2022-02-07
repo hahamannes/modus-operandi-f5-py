@@ -29,7 +29,10 @@ dfg = pd.read_csv(DATA_PATH.joinpath("topic_words_all.csv"))
 dfg['word'] = dfg['word'].astype(str)
 dfg['topic'] = dfg['topic'].astype(str)
 dfg['type'] = dfg['type'].astype(str)
-dfg = dfg[(dfg['type'] == "rape")]
+dfg = dfg[(dfg['type'] == "harddrugs")]
+
+terms = ['All', '2018', '2019', '2020', '2021']
+terms1 = ['All','Hard Drugs', 'Rape', 'Abuse', 'Burglary']
 
 node_list = list(set(dfg['word'].unique().tolist() + \
                      dfg['topic'].unique().tolist())
@@ -50,6 +53,21 @@ for row in dfg.to_dict(orient='records'):
 
 layout = html.Div([
     html.H1('LSA Word Topics', style={"textAlign": "center"}),
+
+    html.H5('Please select a year', style={"textAlign": "left"}),
+        html.Div(dcc.Dropdown(
+            id='genre-dropdown', value='2018', clearable=False,
+            options=[{'label': x, 'value': x} for x in terms],
+        ), className='six columns'),
+
+        html.H5('Please select a crime type', style={"textAlign": "left"}),
+
+        html.Div(dcc.Dropdown(
+            id='sales-dropdown', value='Rape', clearable=False,
+            persistence=True, persistence_type='memory',
+            options=[{'label': x, 'value': x} for x in terms1],
+        ), className='six columns'),
+
     visdcc.Network(id = 'net',
                   data = {'nodes': nodes, 'edges': edges},
                   options = dict(height= '600px', width= '100%')),

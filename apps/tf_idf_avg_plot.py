@@ -130,7 +130,7 @@ layout = html.Div([
 
     html.Div([
         html.Div(dcc.Dropdown(
-            id='y2-dropdown', value='auto', clearable=False,
+            id='y2-dropdown', value='hennep', clearable=False,
             options=[{'label': x, 'value': x} for x in terms]
         ), className='six columns'),
     ], className='row'),
